@@ -4,13 +4,13 @@ const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 
-const { clientsrouter } = require("../server/routes/clients.router.js");
-const { diagnosisrouter } = require("../server/routes/diagnosis.router.js");
+const { clientsrouter } = require("./routes/clients.router.js");
+const { diagnosisrouter } = require("./routes/diagnosis.router.js");
 const { treatmentsrouter } = require("./routes/treatments.router.js");
-const { usersrouter } = require("../server/routes/users.router.js");
-const { pointsrouter } = require("../server/routes/points.router.js");
-const { integratedrouter } = require("../server/routes/integrated.router.js");
-const { statsrouter } = require("../server/routes/stats.router.js");
+const { usersrouter } = require("./routes/users.router.js");
+const { pointsrouter } = require("./routes/points.router.js");
+const { integratedrouter } = require("./routes/integrated.router.js");
+const { statsrouter } = require("./routes/stats.router.js");
 dotenv.config({
   path: "/Users/Micha/Documents/Programming/AcuTrack/shared/.env",
 });
