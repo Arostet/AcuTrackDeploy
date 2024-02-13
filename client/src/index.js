@@ -14,12 +14,12 @@ const theme = createTheme({
     primary: {
       light: "#ff7961",
       main: "#CF4520",
-      dark: "#ba000d",
+      dark: "#A33619",
       contrastText: "#fff",
     },
     secondary: {
       light: "#ff4081",
-      main: "#f50057",
+      main: "#A33619",
       dark: "#c51162",
       contrastText: "#000",
     },
@@ -42,7 +42,7 @@ const theme = createTheme({
         display: "block",
         width: "50%",
         height: "4px",
-        backgroundColor: "red",
+        backgroundColor: "#E26340",
         position: "absolute",
         left: "25%", // Adjust this to center the underline
         bottom: "0", // Position at the bottom of the h1
@@ -67,7 +67,6 @@ const theme = createTheme({
       },
     },
   },
-  // Add custom mixins, transitions, zIndex, etc.
 });
 
 export default theme;
