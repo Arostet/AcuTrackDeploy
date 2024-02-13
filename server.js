@@ -28,8 +28,8 @@ app.use("/points", pointsrouter);
 app.use("/integrated", integratedrouter);
 app.use("/stats", statsrouter);
 
-app.listen(3008, () => {
-  console.log("AcuTrack listening on 8");
+app.listen(process.env.PORT || 3008, () => {
+  console.log(`Server listening on ${process.env.PORT || 3008}`);
 });
 
 app.use(express.static(path.join(__dirname, "/client/build")));
