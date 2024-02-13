@@ -8,14 +8,14 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { status, token, user } = useSelector((state) => state.auth);
+  const { status, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (status === "succeeded" && token && user) {
+    if (status === "succeeded" && user) {
       navigate(`/user-profile/${user.userid}`);
     }
-  }, [status, token, user, navigate]);
+  }, [status, user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 import { Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { logout } from "../../../authentication/authSlice";
+import { logoutUser } from "../../../authentication/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +9,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
-    navigate("/user-auth");
+    dispatch(logoutUser());
+    navigate("/");
   };
 
   return (

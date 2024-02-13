@@ -98,7 +98,7 @@ const TreatmentList = () => {
               onClick={() => handleDelete(treatment.treatmentid)}
               style={{
                 //this style consistent with DeleteClient
-                backgroundColor: "red",
+                backgroundColor: "primary",
                 color: "white",
                 padding: "10px",
               }}

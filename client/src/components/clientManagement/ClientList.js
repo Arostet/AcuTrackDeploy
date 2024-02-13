@@ -71,14 +71,14 @@ const ClientList = () => {
             <Button
               component={RouterLink}
               to={`/clients/edit/${client.clientid}`}
-              color="secondary"
+              color="primary"
             >
               Edit
             </Button>
             <Button
               onClick={() => handleDelete(client.clientid)}
               style={{
-                backgroundColor: "red",
+                backgroundColor: "primary",
                 color: "white",
                 padding: "10px",
               }}

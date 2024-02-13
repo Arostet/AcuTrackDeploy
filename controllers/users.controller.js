@@ -39,10 +39,10 @@ const loginUser = async (req, res) => {
     const row = await loginUserDB(email.toLowerCase());
 
     if (row.length === 0)
-      return res.status(404).json({ msg: "Email does not exist" });
+      return res.status(401).json({ msg: "Email does not exist" });
 
     const match = bcrypt.compareSync(password + "", row[0].password);
-    if (!match) return res.status(404).json({ msg: "Incorrect Password" });
+    if (!match) return res.status(401).json({ msg: "Incorrect Password" });
 
     const user = {
       userid: row[0].userid,
@@ -62,13 +62,20 @@ const loginUser = async (req, res) => {
     res.cookie("token", accesstoken, {
       maxAge: 86400000,
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // send only over HTTPS
+      sameSite: "strict", // CSRF protection
     });
 
-    res.json({ user, token: accesstoken });
+    res.json({ user });
   } catch (err) {
     console.log(err);
-    res.status(404).json({ msg: "Something wrong." });
+    res.status(500).json({ msg: "Something went wrong." });
   }
+};
+
+const logoutUser = (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({ msg: "Logged out successfully" });
 };
 
 const registerUser = async (req, res) => {
@@ -122,6 +129,7 @@ module.exports = {
   allUsers,
   getUserById,
   loginUser,
+  logoutUser,
   registerUser,
   updateUser,
   deleteUser,
