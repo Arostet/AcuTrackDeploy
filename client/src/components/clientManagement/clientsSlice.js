@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3008";
+
 // fetching clients of a specific user
 export const fetchUserClients = createAsyncThunk(
   "clients/fetchUserClients",
   async (userid) => {
-    const response = await axios.get(
-      `http://localhost:3008/clients/user/${userid}`
-    );
+    const response = await axios.get(`${baseURL}/clients/user/${userid}`);
     return response.data;
   }
 );
@@ -15,9 +15,7 @@ export const fetchUserClients = createAsyncThunk(
 export const fetchClientTreatments = createAsyncThunk(
   "clients/fetchClientTreatments",
   async (clientid) => {
-    const response = await axios.get(
-      `http://localhost:3008/integrated/${clientid}`
-    );
+    const response = await axios.get(`${baseURL}/integrated/${clientid}`);
     return response.data;
   }
 );
@@ -26,9 +24,7 @@ export const fetchClientTreatments = createAsyncThunk(
 export const fetchClientDetails = createAsyncThunk(
   "clients/fetchClientDetails",
   async (clientid) => {
-    const response = await axios.get(
-      `http://localhost:3008/clients/client/${clientid}`
-    );
+    const response = await axios.get(`${baseURL}/clients/client/${clientid}`);
     return response.data;
   }
 );
@@ -37,10 +33,7 @@ export const fetchClientDetails = createAsyncThunk(
 export const addNewClient = createAsyncThunk(
   "clients/addNewClient",
   async (clientData) => {
-    const response = await axios.post(
-      "http://localhost:3008/clients",
-      clientData
-    );
+    const response = await axios.post(`${baseURL}/clients`, clientData);
     return response.data;
   }
 );
@@ -50,7 +43,7 @@ export const updateClient = createAsyncThunk(
   "clients/updateClient",
   async ({ clientid, clientData }) => {
     const response = await axios.put(
-      `http://localhost:3008/clients/${clientid}`,
+      `${baseURL}/clients/${clientid}`,
       clientData
     );
     return response.data;
@@ -61,9 +54,7 @@ export const updateClient = createAsyncThunk(
 export const deleteClient = createAsyncThunk(
   "clients/deleteClient",
   async (clientid) => {
-    const response = await axios.delete(
-      `http://localhost:3008/clients/${clientid}`
-    );
+    const response = await axios.delete(`${baseURL}/clients/${clientid}`);
     return response.data;
   }
 );

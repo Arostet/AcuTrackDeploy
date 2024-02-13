@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3008";
+
 //fetching treatments for a specific user
 export const fetchUserTreatments = createAsyncThunk(
   "treatments/fetchUserTreatments",
   async (userid) => {
-    const response = await axios.get(
-      `http://localhost:3008/treatments/${userid}`
-    );
+    const response = await axios.get(`${baseURL}/treatments/${userid}`);
     return response.data;
   }
 );
@@ -17,7 +17,7 @@ export const fetchSingleTreatment = createAsyncThunk(
   "treatments/fetchSingleTreatment",
   async ({ userid, treatmentid }) => {
     const response = await axios.get(
-      `http://localhost:3008/treatments/${userid}/${treatmentid}`
+      `${baseURL}/treatments/${userid}/${treatmentid}`
     );
     return response.data;
   }
@@ -27,10 +27,7 @@ export const fetchSingleTreatment = createAsyncThunk(
 export const addNewTreatment = createAsyncThunk(
   "treatments/addNewTreatment",
   async (treatmentData) => {
-    const response = await axios.post(
-      `http://localhost:3008/treatments`,
-      treatmentData
-    );
+    const response = await axios.post(`${baseURL}/treatments`, treatmentData);
     return response.data;
   }
 );
@@ -39,9 +36,7 @@ export const addNewTreatment = createAsyncThunk(
 export const deleteTreatment = createAsyncThunk(
   "treatments/deleteTreatment",
   async (treatmentid) => {
-    const response = await axios.delete(
-      `http://localhost:3008/treatments/${treatmentid}`
-    );
+    const response = await axios.delete(`${baseURL}/treatments/${treatmentid}`);
     return response.data;
   }
 );
@@ -50,7 +45,7 @@ export const deleteTreatment = createAsyncThunk(
 export const fetchPoints = createAsyncThunk(
   "treatments/fetchPoints",
   async () => {
-    const response = await axios.get(`http://localhost:3008/points`);
+    const response = await axios.get(`${baseURL}/points`);
     return response.data;
   }
 );
@@ -59,7 +54,7 @@ export const fetchPoints = createAsyncThunk(
 export const fetchDiagnosis = createAsyncThunk(
   "treatments/fetchDiagnosis",
   async () => {
-    const response = await axios.get(`http://localhost:3008/diagnosis`);
+    const response = await axios.get(`${baseURL}/diagnosis`);
     return response.data;
   }
 );

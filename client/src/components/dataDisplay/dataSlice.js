@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3008";
+
 const initialState = {
   pointStats: [],
   diagnosisStats: [],
@@ -13,7 +15,7 @@ export const fetchTreatmentCounts = createAsyncThunk(
   "data/fetchTreatmentCounts",
   async (userId) => {
     const response = await axios.get(
-      `http://localhost:3008/stats/treatmentCounts/${userId}`
+      `${baseURL}/stats/treatmentCounts/${userId}`
     );
     return response.data;
   }
@@ -22,9 +24,7 @@ export const fetchTreatmentCounts = createAsyncThunk(
 export const fetchPointStats = createAsyncThunk(
   "data/fetchPointStats",
   async (userId) => {
-    const response = await axios.get(
-      `http://localhost:3008/stats/points/user/${userId}`
-    );
+    const response = await axios.get(`${baseURL}/stats/points/user/${userId}`);
     return response.data;
   }
 );
@@ -33,7 +33,7 @@ export const fetchDiagnosisStats = createAsyncThunk(
   "data/fetchDiagnosisStats",
   async (userId) => {
     const response = await axios.get(
-      `http://localhost:3008/stats/diagnosis/user/${userId}`
+      `${baseURL}/stats/diagnosis/user/${userId}`
     );
     return response.data;
   }

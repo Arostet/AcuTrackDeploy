@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3008";
+
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3008/users/register",
-        userData
-      );
+      const response = await axios.post(`${baseURL}/users/register`, userData);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -20,10 +19,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3008/users/login",
-        userData
-      );
+      const response = await axios.post(`${baseURL}/users/login`, userData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -33,7 +29,7 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
   try {
-    const response = await axios.post("http://localhost:3008/users/logout");
+    const response = await axios.post(`${baseURL}/users/logout`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -45,12 +41,9 @@ export const fetchUserData = createAsyncThunk(
   async (userId, { getState, rejectWithValue }) => {
     const { user } = getState().auth;
     try {
-      const response = await axios.get(
-        `http://localhost:3008/users/${userId}`,
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
-      );
+      const response = await axios.get(`${baseURL}/users/${userId}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -62,7 +55,7 @@ export const fetchAllUsers = createAsyncThunk(
   "auth/fetchAllUsers",
   async () => {
     try {
-      const response = await axios.get("http://localhost:3008/users");
+      const response = await axios.get(`${baseURL}/users`);
       return response.data;
     } catch (error) {
       console.log(error);
