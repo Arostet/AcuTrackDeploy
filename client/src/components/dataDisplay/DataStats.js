@@ -39,19 +39,19 @@ const DataStats = () => {
 
   const diagnosisColumns = [
     { field: "patternname", headerName: "Diagnosis Pattern" },
-    { field: "usage_frequency", headerName: "Usage Frequency" },
+    { field: "diagnosis_frequency", headerName: "Usage Frequency" },
   ];
 
   // const mostUsedPoint = pointStats.length > 0 ? pointStats[0].name : "No data";
 
   return (
     <Grid>
+      <Typography variant="h1">Treatment Counts Over Time</Typography>
+      <TreatmentsGraph treatmentsData={treatmentCounts} />
       <Typography variant="h1">Point Usage Stats</Typography>
       <DataTable data={transformedPointsData} columns={pointColumns} />
       <Typography variant="h1">Diagnosis Stats</Typography>
       <DataTable data={diagnosisStats} columns={diagnosisColumns} />
-      <Typography variant="h1">Treatment Counts Over Time</Typography>
-      <TreatmentsGraph treatmentsData={treatmentCounts} />
     </Grid>
   );
 };
