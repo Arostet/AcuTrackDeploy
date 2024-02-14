@@ -55,7 +55,15 @@ const addClientDB = (client) => {
       regdate: client.regdate,
       userid: client.userid,
       img_path: client.img_path,
+      birthday: client.birthday,
+      age: client.age,
+      sex: client.sex,
+      description: client.description,
+      initial_primary_symptoms: client.initial_primary_symptoms,
+      tongue: client.tongue,
+      pulse: client.pulse,
     })
+    .returning("*")
     .catch((err) => {
       console.log(err);
     });

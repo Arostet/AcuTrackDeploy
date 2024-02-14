@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:3008";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
@@ -11,6 +11,20 @@ export const registerUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async ({ userId, userData }) => {
+    try {
+      const response = await axios.put(`${baseURL}/users/${userId}`, userData);
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw err;
     }
   }
 );
@@ -39,11 +53,8 @@ export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
 export const fetchUserData = createAsyncThunk(
   "auth/fetchUserData",
   async (userId, { getState, rejectWithValue }) => {
-    const { user } = getState().auth;
     try {
-      const response = await axios.get(`${baseURL}/users/${userId}`, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
+      const response = await axios.get(`${baseURL}/users/${userId}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -92,6 +103,17 @@ export const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.user = action.payload;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })

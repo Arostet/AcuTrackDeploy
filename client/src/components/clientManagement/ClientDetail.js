@@ -93,11 +93,54 @@ const ClientDetail = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "70vh",
+          height: "default",
+          mt: "10vh",
+          mb: "1vh",
         }}
       >
         {client ? (
-          <Paper elevation={3} sx={{ p: 3, maxWidth: "100%" }}>
+          <>
+            <Paper
+              elevation={3}
+              sx={{ p: 3, mb: "4vh", mt: "0vh", maxWidth: "100%" }}
+            >
+              <Typography variant="h5" align="center" marginBottom={2}>
+                Client Details
+              </Typography>
+              <Typography variant="body1">
+                <b>Birthdate:</b> {formatDate(client.birthday)}
+              </Typography>
+              <Typography variant="body1">
+                <b>Age:</b> {client.age}
+              </Typography>
+              <Typography variant="body1">
+                <b>Sex:</b> {client.sex}
+              </Typography>
+              <Typography variant="body1">
+                <b>Description:</b> {client.description}
+              </Typography>
+              <Typography variant="body1">
+                <b>Tongue:</b> {client.tongue}
+              </Typography>
+              <Typography variant="body1">
+                <b>Pulse:</b> {client.pulse}
+              </Typography>
+            </Paper>{" "}
+          </>
+        ) : (
+          <Typography variant="subtitle1">Client not found</Typography>
+        )}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "default",
+        }}
+      >
+        {client ? (
+          <Paper elevation={3} sx={{ p: 3, mb: "10vh", maxWidth: "100%" }}>
             {processedTreatments.map((treatment, index) => (
               <React.Fragment key={index}>
                 <Grid

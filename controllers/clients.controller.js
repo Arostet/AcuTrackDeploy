@@ -52,7 +52,6 @@ const allClients = (req, res) => {
 const addClient = (req, res) => {
   const clientData = req.body;
 
-  // Check if the user exists first
   db("users")
     .where({ userid: clientData.userid })
     .first()

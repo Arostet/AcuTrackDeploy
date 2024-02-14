@@ -17,6 +17,13 @@ const AddClient = () => {
     email: "",
     phonenumber: "",
     userid: user.userid,
+    birthday: "",
+    age: null,
+    sex: "",
+    description: "",
+    initial_primary_symptoms: "",
+    tongue: "",
+    pulse: "",
   });
 
   const handleChange = (e) => {
@@ -32,6 +39,13 @@ const AddClient = () => {
         email: "",
         phonenumber: "",
         userid: user.userid,
+        birthday: "",
+        age: null,
+        sex: "",
+        description: "",
+        initial_primary_symptoms: "",
+        tongue: "",
+        pulse: "",
       });
     }
   }, [clientStatus, user.userid]);
@@ -117,6 +131,126 @@ const AddClient = () => {
               />
             </Box>
           </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="birthday"
+                value={clientData.birthday}
+                onChange={handleChange}
+                label="Birthday"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="age"
+                value={clientData.age}
+                onChange={handleChange}
+                label="Age"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="sex"
+                value={clientData.sex}
+                onChange={handleChange}
+                label="Sex"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="description"
+                value={clientData.description}
+                onChange={handleChange}
+                label="Description"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="initial_primary_symptoms"
+                value={clientData.initial_primary_symptoms}
+                onChange={handleChange}
+                label="Initial Primary Symptoms"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="tongue"
+                value={clientData.tongue}
+                onChange={handleChange}
+                label="Tongue"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <Box width="100%" maxWidth={300}>
+              <TextField
+                name="pulse"
+                value={clientData.pulse}
+                onChange={handleChange}
+                label="Pulse"
+                variant="outlined"
+                fullWidth
+              />
+            </Box>
+          </Grid>
+
           <Grid
             item
             xs={12}

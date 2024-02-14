@@ -10,7 +10,6 @@ const UserProfile = () => {
   useEffect(() => {
     if (user && user.userid) {
       dispatch(fetchUserData(user.userid));
-      console.log("USER----!", user);
     }
   }, [dispatch, user]);
 
@@ -34,13 +33,13 @@ const UserProfile = () => {
             sx={{ mb: 2 }}
           >
             <Grid item xs={12} sm={8}>
-              <Typography variant="h6">
+              <Typography variant="h5">
                 <b>Email:</b> {user.email}
               </Typography>
-              <Typography variant="h6">
+              <Typography variant="h5">
                 <b>First Name:</b> {user.fname}
               </Typography>
-              <Typography variant="h6">
+              <Typography variant="h5">
                 <b>Last Name:</b> {user.lname}
               </Typography>
             </Grid>
