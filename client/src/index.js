@@ -5,9 +5,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Provider } from "react-redux";
-import store from "./store/store";
+import { store, persistor } from "./store/store";
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { PersistGate } from "redux-persist/integration/react";
 
 const theme = createTheme({
   palette: {
@@ -77,7 +78,9 @@ root.render(
     <CssBaseline />
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </ThemeProvider>
