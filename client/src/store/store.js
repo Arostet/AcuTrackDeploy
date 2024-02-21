@@ -31,7 +31,7 @@ const persistConfig = {
   key: "root",
   storage,
   transforms: [encryptor],
-  whitelist: ["clients", "treatments", "data", "auth"], // Add reducers that you want to persist here
+  whitelist: ["clients", "treatments", "data", "auth"],
 };
 
 const rootReducer = combineReducers({

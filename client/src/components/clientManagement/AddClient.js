@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewClient } from "./clientsSlice";
-import { TextField, Button, Grid, Box, CircularProgress } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Grid,
+  Box,
+  CircularProgress,
+  MenuItem,
+} from "@mui/material";
 import ToastNotification from "../utilities/ToastNotification";
 
 const AddClient = () => {
   const user = useSelector((state) => state.auth.user);
-  console.log("USER->", user);
   const dispatch = useDispatch();
   const clientStatus = useSelector((state) => state.clients.status);
   const clientError = useSelector((state) => state.clients.error);
@@ -18,7 +24,7 @@ const AddClient = () => {
     phonenumber: "",
     userid: user.userid,
     birthday: "",
-    age: null,
+    age: 0,
     sex: "",
     description: "",
     initial_primary_symptoms: "",
@@ -40,7 +46,7 @@ const AddClient = () => {
         phonenumber: "",
         userid: user.userid,
         birthday: "",
-        age: null,
+        age: 0,
         sex: "",
         description: "",
         initial_primary_symptoms: "",
@@ -66,7 +72,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -83,7 +89,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -100,7 +106,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -117,7 +123,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -134,7 +140,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -151,7 +157,7 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -168,25 +174,36 @@ const AddClient = () => {
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <Box width="100%" maxWidth={300}>
+            <Box width="100%" maxWidth={300} style={{ margin: 0, padding: 0 }}>
               <TextField
+                select
                 name="sex"
                 value={clientData.sex}
                 onChange={handleChange}
                 label="Sex"
                 variant="outlined"
                 fullWidth
-              />
+              >
+                <MenuItem value="">
+                  <em>Sex</em>
+                </MenuItem>
+                <MenuItem value="M">Male</MenuItem>
+                <MenuItem value="F">Female</MenuItem>
+                <MenuItem value="T">Transgender</MenuItem>
+              </TextField>{" "}
             </Box>
           </Grid>
           <Grid
             item
             xs={12}
-            md={4}
-            style={{ display: "flex", justifyContent: "center" }}
+            md={6}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             <Box width="100%" maxWidth={300}>
               <TextField
@@ -196,13 +213,15 @@ const AddClient = () => {
                 label="Description"
                 variant="outlined"
                 fullWidth
+                multiline
+                rows={4}
               />
             </Box>
           </Grid>
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -213,13 +232,15 @@ const AddClient = () => {
                 label="Initial Primary Symptoms"
                 variant="outlined"
                 fullWidth
+                multiline
+                rows={4}
               />
             </Box>
           </Grid>
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -230,13 +251,15 @@ const AddClient = () => {
                 label="Tongue"
                 variant="outlined"
                 fullWidth
+                multiline
+                rows={4}
               />
             </Box>
           </Grid>
           <Grid
             item
             xs={12}
-            md={4}
+            md={6}
             style={{ display: "flex", justifyContent: "center" }}
           >
             <Box width="100%" maxWidth={300}>
@@ -247,6 +270,8 @@ const AddClient = () => {
                 label="Pulse"
                 variant="outlined"
                 fullWidth
+                multiline
+                rows={4}
               />
             </Box>
           </Grid>
@@ -260,13 +285,7 @@ const AddClient = () => {
               type="submit"
               variant="contained"
               color="primary"
-              style={{
-                padding: "10px 30px",
-                fontSize: "1.7rem",
-                border: "8px solid red",
-                margin: "30px",
-                boxSizing: "border-box",
-              }}
+              style={{ margin: "2vh" }}
             >
               Add Client
             </Button>
