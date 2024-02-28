@@ -21,9 +21,11 @@ const ClientList = () => {
 
   const dispatch = useDispatch();
 
-  const sortedClients = [...clients].sort((a, b) =>
-    a.lname.localeCompare(b.lname)
-  );
+  const sortedClients = [...clients].sort((a, b) => {
+    const lnameA = a.lname || ""; // Fallback to empty string if undefined
+    const lnameB = b.lname || "";
+    return lnameA.localeCompare(lnameB);
+  });
 
   const navigate = useNavigate();
 

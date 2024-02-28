@@ -22,6 +22,7 @@ const TreatmentList = () => {
   const user = useSelector((state) => state.auth.user);
   const selectUserTreatments = (state) => state.treatments.treatments;
   const treatments = useSelector(selectUserTreatments);
+  const navigate = useNavigate();
   const uniqueTreatments = treatments
     .filter(
       (treatment, index, self) =>
@@ -29,9 +30,13 @@ const TreatmentList = () => {
     )
     .sort((a, b) => new Date(b.tdate) - new Date(a.tdate)); // Sorting treatments by date
 
-  const navigate = useNavigate();
   const formatDate = (isoDateString) => {
     const date = new Date(isoDateString);
+    if (isNaN(date.getTime())) {
+      // Check if date is invalid
+      // Handle invalid date here (e.g., return a default value or throw an error)
+      return "Invalid date"; // Example default value
+    }
     return date.toISOString().split("T")[0];
   };
 
